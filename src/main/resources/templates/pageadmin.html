@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница Админа</title>
+</head>
+<body>
+<h1>Страница администратора</h1>
+<table border="3">
+    <tbody>
+    <tr>
+        <td>Айди</td>
+        <td>Имя</td>
+        <td>Телефон</td>
+        <td>Пароль</td>
+        <td>Роль</td>
+        <td>Действия</td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <form action="/admin/updateuser" method="post">
+        <td>
+            <p align="center" th:text="${user.getId()}"></p>
+        </td>
+            <input type="hidden" name="id" th:value="${user.getId()}">
+        <td>
+            <input type="text" name="name" th:value="${user.getName()}">
+        </td>
+        <td>
+            <input type="text" name="telephone" th:value="${user.getTelephone()}">
+        </td>
+        <td>
+            <input type="hidden" name="password" th:value="${user.getPassword()}">
+            ********
+        </td>
+        <td>
+            <strong>
+                <p style="margin: 5px" align="center">Текущие роли:</p>
+            </strong>
+            <p align="center" th:each="roles : ${user.getRole()}" th:text="${'-' + roles.getRole()}"></p>
+            <strong>
+                <p align="center">Изменить роль:</p>
+            </strong>
+            <select style="width: -moz-available" align="center" multiple size="2" name="roles">
+                <option name="admin">Admin</option>
+                <option name="user">User</option>
+            </select>
+        </td>
+        <td>
+            <input type="submit" value="Редактировать">
+        </form>
+            <form action="/admin/deleteuser" method="post">
+                <input type="hidden" name="id" th:value="${user.getId()}">
+                <input type="submit" value="Удалить">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h2>Добавить нового пользователя</h2>
+<table border="3">
+    <form action="admin/adduser" method="post">
+        <tr>
+            <td>
+                <input type="text" name="name" value="Имя юзера">
+            </td>
+            <td>
+                <input type="text" name="telephone" value="Телефон юзера">
+            </td>
+            <td>
+                <input type="text" name="password" value="Пароль юзера">
+            </td>
+            <td>
+                <select multiple size="2" name="roles">
+                    <option name="admin">Admin</option>
+                    <option name="user">User</option>
+                </select>
+            </td>
+            <td>
+                <input type="submit" value="Добавить юзера"></td>
+        </tr>
+    </form>
+</table>
+<br>
+<br>
+
+</body>
+</html>

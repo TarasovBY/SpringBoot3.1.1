@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница Юзера</title>
+</head>
+<body>
+<a href="/logout">Выйти из системы</a>
+<br>
+<h1>Страница Юзера</h1>
+<table border="3">
+    <tr>
+        <td>Айди</td>
+        <td>Имя</td>
+        <td>Телефон</td>
+        <td>Пароль</td>
+    </tr>
+    <tr>
+        <td th:text="${userSolo.getId()}"></td>
+        <td  th:text="${userSolo.getName()}"></td>
+        <td th:text="${userSolo.getTelephone()}"></td>
+        <td th:text="${userSolo.getPassword()}"></td>
+    </tr>
+</table>
+</body>
+</html>
